@@ -7,11 +7,13 @@ LABEL org.opencontainers.image.licenses="MIT"
 # Install system utilities and Python package manager 'uv'.
 # - curl: For downloading files if needed.
 # - git: For version control operations if needed during build.
+# - openssh-client: For SSH operations (e.g., git push over SSH).
 # --no-install-recommends: Avoids installing optional packages.
 # Clean up apt lists to reduce image size.
 RUN apt-get update && apt-get install -y --no-install-recommends \
         curl \
         git \
+        openssh-client \
     && pip install --no-cache-dir uv \
     && rm -rf /var/lib/apt/lists/*
 
