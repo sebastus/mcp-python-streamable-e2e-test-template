@@ -1,0 +1,27 @@
+version: '3.8'
+services:
+  app:
+    # Specifies the build context and Dockerfile location.
+    # The Dockerfile is located in the project root, relative to this compose.yml file.
+    build:
+      context: ..  # Project root (e.g., mcp-python-e2e-docker-template)
+      dockerfile: Dockerfile # Dockerfile in the project root
+
+    # Mounts the entire project into /app in the container.
+    # This allows access to symbolic links on the host OS from within the container.
+    # 'cached' can improve performance on macOS.
+    volumes:
+      - ..:/app:cached # Mounts the host's project root to /app in the container
+
+    # Keeps the container running so VS Code can attach to it.
+    # The server itself can be started via devcontainer.json's postAttachCommand or manually.
+    command: sleep infinity
+
+    # Port forwarding (can also be configured in devcontainer.json).
+    # If you uncomment this, ensure it aligns with devcontainer.json's forwardPorts.
+    # ports:
+    #   - "8000:8000"
+
+    # Add environment variables as needed.
+    # environment:
+    #   - MY_ENV_VAR=example

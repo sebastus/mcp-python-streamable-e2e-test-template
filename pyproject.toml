@@ -1,0 +1,49 @@
+[build-system]
+requires = ["setuptools >= 61.0", "wheel", "uv >= 0.1.17"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "mcp-python-e2e-docker-template"
+version = "0.1.0"
+description = "A template for creating Dockerized Python FastMCP (Model Context Protocol) servers with E2E testing capabilities. Based on the mcp-sdk."
+keywords = ["MCP", "FastMCP", "template", "docker", "python"]
+authors = [
+    { name = "akitana-airtanker", email = "akitana_airtanker-github@yahoo.co.jp" },
+]
+license = { text = "MIT License" }
+readme = "README.md"
+requires-python = ">=3.10"
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Software Development :: Libraries :: Application Frameworks",
+]
+dependencies = [
+    "mcp[cli] @ git+https://github.com/modelcontextprotocol/python-sdk.git",
+]
+
+[project.urls]
+Homepage = "https://github.com/akitana-airtanker/mcp-python-e2e-docker-template"
+Repository = "https://github.com/akitana-airtanker/mcp-python-e2e-docker-template"
+
+[project.optional-dependencies]
+test = ["pytest", "pytest-asyncio", "uv"]
+dev = ["pre-commit"]
+
+[project.scripts]
+mcp-server-demo = "mcp_python_e2e_docker_template.server:main"
+mcp-client-demo = "mcp_python_e2e_docker_template.client:main"
+
+[tool.setuptools]
+package-dir = { "" = "src" }
+packages = ["mcp_python_e2e_docker_template"]
+
+[tool.pytest.ini_options]
+asyncio_mode = "strict"
+asyncio_default_fixture_loop_scope = "function"
