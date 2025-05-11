@@ -14,7 +14,7 @@ This repository is a **Streamable-ready End-to-End (E2E) test template** for MCP
 **Detailed explanatory articles have been published!**
 
 *   English (dev.to): [Python MCP Remote Server: The Dawn of the Streamable HTTP Era, with a Minimalist Template](https://dev.to/akitana-airtanker/python-mcp-remote-server-the-dawn-of-the-streamable-http-era-with-a-minimalist-template-1o6j)
-*   Japanese (Qiita): [リモートサーバーで動かす Python MCP Server — Streamable HTTP 時代の幕開けと、uv / Docker / pytest を備えた開発最新化 —](https://qiita.com/airtanker/items/d940ef8c346c3644da3b)
+*   Japanese (Qiita): [リモートサーバーで動かす Python MCP Server — Streamable HTTP 時代の始まり ~ uv / Docker / pytest を備えたミニマルテンプレート付き ~](https://qiita.com/airtanker/items/d940ef8c346c3644da3b)
 
 ---
 
