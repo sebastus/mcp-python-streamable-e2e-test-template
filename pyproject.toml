@@ -3,7 +3,7 @@ requires = ["setuptools >= 61.0", "wheel", "uv >= 0.1.17"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "mcp-python-e2e-docker-template"
+name = "mcp-python-streamable-e2e-test-template"
 version = "0.1.0"
 description = "A template for creating Dockerized Python FastMCP (Model Context Protocol) servers with E2E testing capabilities. Based on the mcp-sdk."
 keywords = ["MCP", "FastMCP", "template", "docker", "python"]
@@ -29,20 +29,20 @@ dependencies = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/akitana-airtanker/mcp-python-e2e-docker-template"
-Repository = "https://github.com/akitana-airtanker/mcp-python-e2e-docker-template"
+Homepage = "https://github.com/akitana-airtanker/mcp-python-streamable-e2e-test-template"
+Repository = "https://github.com/akitana-airtanker/mcp-python-streamable-e2e-test-template"
 
 [project.optional-dependencies]
 test = ["pytest", "pytest-asyncio", "uv"]
 dev = ["pre-commit"]
 
 [project.scripts]
-mcp-server-demo = "mcp_python_e2e_docker_template.server:main"
-mcp-client-demo = "mcp_python_e2e_docker_template.client:main"
+mcp-server-demo = "mcp_python_streamable_e2e_test_template.server:main"
+mcp-client-demo = "mcp_python_streamable_e2e_test_template.client:main"
 
 [tool.setuptools]
 package-dir = { "" = "src" }
-packages = ["mcp_python_e2e_docker_template"]
+packages = ["mcp_python_streamable_e2e_test_template"]
 
 [tool.pytest.ini_options]
 asyncio_mode = "strict"

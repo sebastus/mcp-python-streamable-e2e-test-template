@@ -7,6 +7,8 @@
 This is a template project for efficiently developing Python-based Model Context Protocol (MCP) servers using [FastMCP](https://github.com/modelcontextprotocol/fastmcp) and Docker (Devcontainer).
 It provides samples for basic MCP server functionalities (e.g., an `add` tool and a `greeting` resource), utilizes type hints, includes `Ruff` for static analysis and formatting, a test environment, and supports a ready-to-use development environment setup.
 
+This repository is a **Streamable-ready End-to-End (E2E) test template** for MCP written in Python and comes with a **Docker/Devcontainer setup** out of the box.
+
 ## Table of Contents
 
 *   [Features](#features)
@@ -48,7 +50,7 @@ It provides samples for basic MCP server functionalities (e.g., an `add` tool an
 1.  **Create a new repository from this template or clone the repository.**
     Use the "Use this template" button on GitHub or clone as follows:
     ```bash
-    git clone https://github.com/akitana-airtanker/mcp-python-e2e-docker-template.git <your-project-name>
+    git clone https://github.com/akitana-airtanker/mcp-python-streamable-e2e-test-template.git <your-project-name>
     cd <your-project-name>
     ```
     Replace `<your-project-name>` with your project's name.
@@ -162,9 +164,9 @@ The tests start the FastMCP server on a **dedicated port 8001** (configured in `
 ### Mechanism
 
 * The `tests/conftest.py` fixture passes `MCP_SERVER_PORT=8001` as an environment variable to the child process when starting the server process.
-* In `src/mcp_python_e2e_docker_template/server.py`, the `Config` class reads `MCP_SERVER_PORT` and `FASTMCP_PORT`. If `MCP_SERVER_PORT` is set and `FASTMCP_PORT` is not, `FASTMCP_PORT` (used by FastMCP) defaults to the value of `MCP_SERVER_PORT`.
+* In `src/mcp_python_streamable_e2e_test_template/server.py`, the `Config` class reads `MCP_SERVER_PORT` and `FASTMCP_PORT`. If `MCP_SERVER_PORT` is set and `FASTMCP_PORT` is not, `FASTMCP_PORT` (used by FastMCP) defaults to the value of `MCP_SERVER_PORT`.
   ```python
-  # src/mcp_python_e2e_docker_template/server.py
+  # src/mcp_python_streamable_e2e_test_template/server.py
   # ...
   from .config import Config
   cfg = Config()

@@ -203,7 +203,7 @@ cli = [
 ]
 
 [[package]]
-name = "mcp-python-e2e-docker-template"
+name = "mcp-python-streamable-e2e-test-template"
 version = "0.1.0"
 source = { editable = "." }
 dependencies = [
