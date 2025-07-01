@@ -1,11 +1,12 @@
 import logging
+from dotenv import load_dotenv
 import os
 from azure.monitor.opentelemetry import configure_azure_monitor
 
 from mcp.server.fastmcp import FastMCP
 
 from .config import Config
-
+load_dotenv("../../.env")
 # Load configuration
 cfg = Config()
 
