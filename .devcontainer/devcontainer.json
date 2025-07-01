@@ -36,7 +36,12 @@
         "ms-python.python", // Python language support
         "ms-python.vscode-pylance", // Pylance for IntelliSense
         "charliermarsh.ruff", // Ruff linter and formatter
-        "tamasfe.even-better-toml" // For pyproject.toml and other TOML files
+        "tamasfe.even-better-toml", // For pyproject.toml and other TOML files
+        "ms-azuretools.vscode-azureappservice",
+        "ms-azuretools.vscode-azureresourcegroups",
+        "ms-azuretools.vscode-containers",
+        "ms-azuretools.vscode-azure-github-copilot",
+        "ms-azuretools.vscode-azurecontainerapps"
       ]
     }
   },
