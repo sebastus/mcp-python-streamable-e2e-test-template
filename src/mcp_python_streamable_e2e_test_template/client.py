@@ -5,11 +5,11 @@ import os
 import sys  # Added for sys.exit
 from typing import Any, Callable, Dict, List, Optional
 
+from dotenv import load_dotenv
 from mcp import ClientSession, types
 from mcp.client.streamable_http import streamablehttp_client
 
 logger = logging.getLogger(__name__)
-
 
 async def run_client(quiet: bool, verbose: bool) -> None:
     """Runs the MCP client to connect to the server and call a tool.
@@ -19,8 +19,8 @@ async def run_client(quiet: bool, verbose: bool) -> None:
         verbose: If True, set logging level to DEBUG.
     """
     # URL of the target server.
-    # Assumes a server is running locally or in Docker, accessible at this address.
-    server_url: str = "http://localhost:8000/mcp"
+    # Read from environment variable with fallback to default
+    server_url: str = os.getenv("MCP_SERVER_URL", "http://localhost:8000/mcp")
 
     try:
         logger.info(f"Connecting to MCP server at {server_url}...")
@@ -137,6 +137,9 @@ async def run_client(quiet: bool, verbose: bool) -> None:
 
 def main() -> None:
     """Console script entry point for the MCP client."""
+    # Load environment variables from .env file
+    load_dotenv()
+    
     parser = argparse.ArgumentParser(
         description="MCP client to connect to a server and call a tool."
     )

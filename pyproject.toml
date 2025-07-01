@@ -27,6 +27,7 @@ classifiers = [
 dependencies = [
     "mcp[cli] @ git+https://github.com/modelcontextprotocol/python-sdk.git",
     "azure-monitor-opentelemetry",
+    "python-dotenv",
 ]
 
 [project.urls]
