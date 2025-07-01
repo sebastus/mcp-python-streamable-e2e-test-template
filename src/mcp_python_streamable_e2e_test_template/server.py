@@ -1,5 +1,6 @@
 import logging
 import os
+from azure.monitor.opentelemetry import configure_azure_monitor
 
 from mcp.server.fastmcp import FastMCP
 
@@ -16,11 +17,6 @@ if cfg.mcp_server_port and not cfg.fastmcp_port:
 elif cfg.fastmcp_port:  # If FASTMCP_PORT is explicitly set, ensure it's used.
     os.environ["FASTMCP_PORT"] = cfg.fastmcp_port
 
-
-# Create an MCP server instance.
-# The server name "Demo" will be used in logging.
-server: FastMCP = FastMCP("Demo")
-
 # Configure logging.
 # The log level is sourced from the Config object.
 # Logging is configured after server instance creation to use the server's name.
@@ -28,8 +24,17 @@ logging.basicConfig(
     level=cfg.log_level,
     format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
 )
-logger = logging.getLogger(server.name)
 
+# Configure OpenTelemetry to use Azure Monitor with the 
+# APPLICATIONINSIGHTS_CONNECTION_STRING environment variable.
+configure_azure_monitor(
+    logger_name="mcp-server-demo",  # Set the namespace for the logger in which you would like to collect telemetry for if you are collecting logging telemetry. This is imperative so you do not collect logging telemetry from the SDK itself.
+)
+logger = logging.getLogger("mcp-server-demo")  # Logging telemetry will be collected from logging calls made with this logger and all of it's children loggers.
+
+# Create an MCP server instance.
+# The server name "Demo" will be used in logging.
+server: FastMCP = FastMCP("Demo", host="127.0.0.1")
 
 # Define an 'add' tool.
 # This tool takes two integers 'a' and 'b' and returns their sum.

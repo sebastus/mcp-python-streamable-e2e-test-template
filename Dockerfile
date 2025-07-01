@@ -31,6 +31,9 @@ RUN groupadd ${APP_GROUP} && useradd -ms /bin/bash -g ${APP_GROUP} ${APP_USER}
 # Set the working directory in the container.
 WORKDIR /app
 
+# Copy documentation files into the container.
+COPY docs ./docs
+
 # Copy project files required for dependency installation.
 # This includes pyproject.toml and uv.lock (if it exists).
 # Copying these first leverages Docker's layer caching if dependencies don't change.
@@ -65,8 +68,10 @@ USER ${APP_USER}
 # This allows running executables from the venv directly (e.g., mcp-server-demo).
 ENV VIRTUAL_ENV="/app/.venv"
 ENV PATH="/app/.venv/bin:$PATH"
+ENV FASTMCP_PORT=8000
+ENV MCP_TRANSPORT="streamable-http"
 
-# Expose the port the MCP server listens on.
+# Document Exposure of the port the MCP server listens on.
 EXPOSE 8000
 
 # Define the default command to run when the container starts.
