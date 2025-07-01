@@ -40,7 +40,9 @@
         "ms-azuretools.vscode-azureappservice",
         "ms-azuretools.vscode-azureresourcegroups",
         "ms-azuretools.vscode-containers",
-        "ms-azuretools.vscode-azure-github-copilot"      ]
+        "ms-azuretools.vscode-azure-github-copilot",
+        "ms-azuretools.vscode-azurecontainerapps"
+      ]
     }
   },
   // Commands to run after the container is created.
