@@ -36,7 +36,6 @@ Repository = "https://github.com/akitana-airtanker/mcp-python-streamable-e2e-tes
 
 [project.optional-dependencies]
 test = ["pytest", "pytest-asyncio", "uv"]
-dev = ["pre-commit"]
 
 [project.scripts]
 mcp-server-demo = "mcp_python_streamable_e2e_test_template.server:main"

@@ -48,10 +48,7 @@ COPY README.md ./README.md
 # --no-cache-dir: Disables pip's cache to reduce image size.
 RUN uv venv .venv && \
     . .venv/bin/activate && \
-    uv pip install --no-cache-dir -e ".[test,dev]"
-    # Note: Added 'dev' dependencies for pre-commit hooks if needed in the image,
-    # though typically pre-commit is a local dev tool.
-    # If pre-commit is not run inside the final image, 'dev' can be removed here.
+    uv pip install --no-cache-dir -e ".[test]"
 
 # Copy the rest of the application code into the container.
 # Assumes .dockerignore is configured to exclude unnecessary files (e.g., .git, .venv).

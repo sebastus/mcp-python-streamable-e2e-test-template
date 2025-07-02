@@ -47,8 +47,7 @@
   },
   // Commands to run after the container is created.
   // Installs project dependencies (including 'test' and 'dev' extras)
-  // and sets up pre-commit hooks.
-  "postCreateCommand": "uv venv .venv && . .venv/bin/activate && uv pip install --no-cache-dir -e \".[test,dev]\" && pre-commit install",
+  "postCreateCommand": "uv venv .venv && . .venv/bin/activate && uv pip install --no-cache-dir -e \".[test,dev]\"",
   // Forward port 8000 from the container to the host.
   // This is the port the MCP server typically listens on.
   "forwardPorts": [
