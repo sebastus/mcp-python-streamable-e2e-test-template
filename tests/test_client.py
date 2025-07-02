@@ -9,7 +9,7 @@ from mcp.client.streamable_http import streamablehttp_client
 # Configure logging for test execution.
 # The log level can be set via the LOG_LEVEL environment variable (e.g., DEBUG, INFO).
 logging.basicConfig(
-    level=os.getenv("LOG_LEVEL", "INFO").upper(),
+    level=os.getenv("LOG_LEVEL", "DEBUG").upper(),
     format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
 )
 logger = logging.getLogger(__name__)
@@ -23,6 +23,7 @@ async def test_add_tool_success(mcp_server_url: str) -> None:
     Args:
         mcp_server_url: The URL of the MCP server, provided by a pytest fixture.
     """
+
     server_url: str = mcp_server_url  # Get server URL from the fixture
     tool_name: str = "add"
     arguments: Dict[str, Any] = {"a": 10, "b": 5}
@@ -63,42 +64,42 @@ async def test_add_tool_success(mcp_server_url: str) -> None:
                 )
 
                 # Assert that the tool call was not an error.
-                assert (
-                    not response_object.isError
-                ), f"Tool call resulted in an error: {response_object.content}"
+                assert not response_object.isError, (
+                    f"Tool call resulted in an error: {response_object.content}"
+                )
                 # Assert that the response has a 'content' attribute.
-                assert hasattr(
-                    response_object, "content"
-                ), "Response object should have a 'content' attribute"
+                assert hasattr(response_object, "content"), (
+                    "Response object should have a 'content' attribute"
+                )
 
                 actual_content_list: List[types.Content] = response_object.content
 
                 # Assert that the content is a list.
-                assert isinstance(
-                    actual_content_list, list
-                ), f"Response content from tool '{tool_name}' should be a list, got {type(actual_content_list)}"
+                assert isinstance(actual_content_list, list), (
+                    f"Response content from tool '{tool_name}' should be a list, got {type(actual_content_list)}"
+                )
                 # Assert that the content list is not empty.
-                assert (
-                    len(actual_content_list) > 0
-                ), f"Response content list from tool '{tool_name}' should not be empty"
+                assert len(actual_content_list) > 0, (
+                    f"Response content list from tool '{tool_name}' should not be empty"
+                )
 
                 first_content: types.Content = actual_content_list[0]
                 # Assert that the first content item is TextContent.
-                assert isinstance(
-                    first_content, types.TextContent
-                ), f"First content item should be TextContent, got {type(first_content)}"
+                assert isinstance(first_content, types.TextContent), (
+                    f"First content item should be TextContent, got {type(first_content)}"
+                )
                 # Assert that the content type is 'text'.
-                assert (
-                    first_content.type == "text"
-                ), f"Content type should be 'text', got '{first_content.type}'"
+                assert first_content.type == "text", (
+                    f"Content type should be 'text', got '{first_content.type}'"
+                )
 
                 try:
                     # Attempt to convert the result text to an integer.
                     result_value: int = int(first_content.text)
                     # Assert that the result matches the expected value.
-                    assert (
-                        result_value == expected_result
-                    ), f"Result of {tool_name}({arguments['a']}, {arguments['b']}) was {result_value}, expected {expected_result}"
+                    assert result_value == expected_result, (
+                        f"Result of {tool_name}({arguments['a']}, {arguments['b']}) was {result_value}, expected {expected_result}"
+                    )
                     logger.info(
                         f"Tool '{tool_name}' returned expected result: {result_value}"
                     )

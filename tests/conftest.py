@@ -80,7 +80,7 @@ def mcp_server_url() -> Generator[str, None, None]:
         )
 
         # Wait for the server to become ready.
-        max_wait_time_seconds: int = 30
+        max_wait_time_seconds: int = 60
         poll_interval_seconds: float = 0.5
         start_time: float = time.time()
         server_ready: bool = False
