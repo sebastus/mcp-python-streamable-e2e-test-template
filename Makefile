@@ -32,16 +32,16 @@ sort-imports:
 # Check for file issues (trailing whitespace, end-of-file, large files)
 check-files:
 	@echo "Checking for trailing whitespace..."
-	@! grep -r '[[:space:]]$$' --include="*.py" --include="*.yaml" --include="*.yml" --include="*.md" --include="*.txt" . || (echo "Found trailing whitespace" && exit 1)
+	@! grep -r '[[:space:]]$$' --exclude-dir=".venv" --include="*.py" --include="*.yaml" --include="*.yml" --include="*.md" --include="*.txt" . || (echo "Found trailing whitespace" && exit 1)
 	@echo "Checking for files without final newline..."
-	@for file in $$(find . -name "*.py" -o -name "*.yaml" -o -name "*.yml" -o -name "*.md" -o -name "*.txt"); do \
+	@find . -not -path "./.venv/*" \( -name "*.py" -o -name "*.yaml" -o -name "*.yml" -o -name "*.md" -o -name "*.txt" \) | while read file; do \
 		if [ -s "$$file" ] && [ "$$(tail -c1 "$$file" | wc -l)" -eq 0 ]; then \
 			echo "File missing final newline: $$file"; \
 			exit 1; \
 		fi; \
 	done
 	@echo "Checking for large files..."
-	@find . -type f -size +500k -not -path "./.git/*" -not -path "./__pycache__/*" -not -path "./.venv/*" | while read file; do \
+	@find . -not -path "./.venv/*" -type f -size +500k -not -path "./.git/*" -not -path "./__pycache__/*" | while read file; do \
 		echo "Large file found: $$file"; \
 		exit 1; \
 	done || true
@@ -49,9 +49,9 @@ check-files:
 # Fix file issues (trailing whitespace and end-of-file)
 fix-files:
 	@echo "Fixing trailing whitespace..."
-	@find . -name "*.py" -o -name "*.yaml" -o -name "*.yml" -o -name "*.md" -o -name "*.txt" | xargs sed -i 's/[[:space:]]*$$//'
+	@find . -not -path "./.venv/*" \( -name "*.py" -o -name "*.yaml" -o -name "*.yml" -o -name "*.md" -o -name "*.txt" \) | xargs sed -i 's/[[:space:]]*$$//'
 	@echo "Fixing end-of-file newlines..."
-	@for file in $$(find . -name "*.py" -o -name "*.yaml" -o -name "*.yml" -o -name "*.md" -o -name "*.txt"); do \
+	@find . -not -path "./.venv/*" \( -name "*.py" -o -name "*.yaml" -o -name "*.yml" -o -name "*.md" -o -name "*.txt" \) | while read file; do \
 		if [ -s "$$file" ] && [ "$$(tail -c1 "$$file" | wc -l)" -eq 0 ]; then \
 			echo "" >> "$$file"; \
 		fi; \

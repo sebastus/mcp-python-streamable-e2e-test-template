@@ -9,6 +9,7 @@ description = "A template for creating Dockerized Python FastMCP (Model Context 
 keywords = ["MCP", "FastMCP", "template", "docker", "python"]
 authors = [
     { name = "akitana-airtanker", email = "akitana_airtanker-github@yahoo.co.jp" },
+    { name = "sebastus", email = "divingclimber@gmail.com" },
 ]
 license = { text = "MIT License" }
 readme = "README.md"
@@ -31,19 +32,19 @@ dependencies = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/akitana-airtanker/mcp-python-streamable-e2e-test-template"
-Repository = "https://github.com/akitana-airtanker/mcp-python-streamable-e2e-test-template"
+Homepage = "https://github.com/sebastus/mcp-python-streamable-e2e-test-template"
+Repository = "https://github.com/sebastus/mcp-python-streamable-e2e-test-template"
 
 [project.optional-dependencies]
 test = ["pytest", "pytest-asyncio", "uv"]
 
 [project.scripts]
-mcp-server-demo = "mcp_python_streamable_e2e_test_template.server:main"
+mcp-server-demo = "mcp_server.server:main"
 mcp-client-demo = "mcp_python_streamable_e2e_test_template.client:main"
 
 [tool.setuptools]
 package-dir = { "" = "src" }
-packages = ["mcp_python_streamable_e2e_test_template"]
+packages = ["mcp_server"]
 
 [tool.pytest.ini_options]
 asyncio_mode = "strict"
